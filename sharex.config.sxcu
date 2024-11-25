@@ -1,0 +1,15 @@
+{
+  "Version": "14.0.1",
+  "Name": "<name for sharex>",
+  "DestinationType": "ImageUploader",
+  "RequestMethod": "POST",
+  "RequestURL": "<your domain>/upload",
+    "Headers": {
+    "Authorization": "Bearer <your token>"
+  },
+  "Body": "Binary",
+  "FileFormName": "file",
+  "URL": "{json:image}",
+  "DeletionURL": "{json:deleteUrl}",
+  "ErrorMessage": "{json:error}"
+}

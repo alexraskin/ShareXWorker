@@ -1,0 +1,17 @@
+name = "ShareXWorker"
+main = "src/index.ts"
+compatibility_date = "2024-11-25"
+
+routes = [
+  { pattern = "example.com", custom_domain = true },
+  { pattern = "example.com/*", zone_name = "example.com"}
+]
+
+# compatibility_flags = [ "nodejs_compat" ]
+
+[vars]
+AUTH_KEY="Your Token"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "example-bucket"
