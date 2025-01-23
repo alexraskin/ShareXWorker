@@ -10,7 +10,6 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-// Auth middleware
 app.use('/upload/*', async (c: Context, next: Next) => {
   const auth = bearerAuth({
     token: c.env.AUTH_KEY,
@@ -24,23 +23,18 @@ app.use('/upload/*', async (c: Context, next: Next) => {
 app.get(
   '*',
   cache({
-    cacheName: 'ShareXWorker', // is this a good name?
-    cacheControl: 'max-age=604800', // 1 week
+    cacheName: 'ShareXWorker',
+    cacheControl: 'max-age=604800',
   })
 );
 
-// Error handler
 app.onError((err: Error, c: Context) => {
   console.error(`${err}`);
-  return c.json({ success: false, message: 'An error occurred' }, 500);
+  return c.redirect("https://http.cat/500");
 });
 
-// index route
 app.get('/', async (c: Context) => {
-  return c.json({
-    statusCode: 200,
-    healthy: true,
-  });
+  return c.redirect("https://http.cat/404")
 });
 
 // upload route
